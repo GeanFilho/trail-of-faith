@@ -291,8 +291,16 @@
     .btn-danger { background: #fee2e2; color: #ef4444; }
     
     /* Social Buttons */
-    .btn-whatsapp { background: #25D366; color: white; width: 100%; margin-bottom: 8px;}
-    .btn-share-native { background: var(--primary); color: white; width: 100%; margin-bottom: 8px;}
+    .btn-whatsapp { 
+      background: #25D366; 
+      color: white; 
+      width: 100%; 
+      margin-bottom: 8px;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+      font-size: 1rem;
+      padding: 14px;
+    }
+    .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
     
     .w-full { width: 100%; }
     input, select, textarea { width: 100%; border-radius: 12px; border: 1px solid var(--border); padding: 12px; background: var(--bg-body); outline: none; }
@@ -480,7 +488,7 @@
     </section>
   </main>
 
-  <footer>Trilha da Fé v2.2 • Sua jornada, seu tempo.</footer>
+  <footer>Trilha da Fé v2.3 • Sua jornada, seu tempo.</footer>
 
   <!-- MODAL ONBOARDING -->
   <div class="modal-backdrop" id="onboarding-backdrop">
@@ -534,15 +542,12 @@
       
       <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">Convide amigos para essa jornada:</p>
       
-      <button class="btn btn-share-native" id="btn-share-native" onclick="shareProgress('native')">
-        📲 Compartilhar no Insta/Outros
+      <!-- APENAS WHATSAPP AGORA -->
+      <button class="btn btn-whatsapp" onclick="shareProgress()">
+        💬 Compartilhar no WhatsApp
       </button>
       
-      <button class="btn btn-whatsapp" onclick="shareProgress('whatsapp')">
-        💬 Enviar no WhatsApp
-      </button>
-      
-      <button class="btn btn-secondary w-full" style="margin-top:8px; font-size:0.8rem;" onclick="closeShareModal()">
+      <button class="btn btn-secondary w-full" style="margin-top:12px; font-size:0.8rem;" onclick="closeShareModal()">
         Fechar
       </button>
     </div>
@@ -764,26 +769,13 @@
       document.getElementById("share-backdrop").classList.remove("show");
     }
 
-    function shareProgress(type) {
+    function shareProgress() {
       const streak = state.streak;
       const text = `🔥 Acabei de completar minha jornada diária na *Trilha da Fé*! Já são ${streak} dias seguidos mantendo a chama acesa. Venha participar também e fortaleça sua caminhada! ✝️ #TrilhaDaFe`;
-      // Como não tem URL real ainda, usamos um placeholder ou deixamos sem link
-      const url = "https://trilhadafe.app"; // URL Fictícia para exemplo
-
-      if (type === 'whatsapp') {
-        const waUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
-        window.open(waUrl, '_blank');
-      } else if (type === 'native') {
-        if (navigator.share) {
-          navigator.share({
-            title: 'Minha Jornada na Trilha da Fé',
-            text: text,
-            url: url
-          }).catch(console.error);
-        } else {
-          alert("Seu navegador não suporta compartilhamento nativo. Use o botão do WhatsApp!");
-        }
-      }
+      
+      // Abre WhatsApp
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
     }
 
     /* Interactions */
