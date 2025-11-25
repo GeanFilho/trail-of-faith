@@ -1,386 +1,395 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Trilha da Fé - Jornada Diária</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Faith Journey</title>
   
-  <!-- Fontes Modernas -->
+  <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <style>
     :root {
-      /* Paleta Moderna */
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --primary-light: #e0e7ff;
-      --accent: #8b5cf6;
-      --success: #10b981;
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
+      /* --- COLORS & THEME --- */
+      --bg-body: #F3F4F6;
+      --bg-card: #FFFFFF;
+      --bg-nav-mobile: rgba(255, 255, 255, 0.95);
+      --bg-subtle: #F9FAFB;
       
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --primary: #6366f1;
+      --primary-dim: rgba(99, 102, 241, 0.15);
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      
+      --text-main: #1F2937;
+      --text-muted: #6B7280;
+      
+      --border: #E5E7EB;
+      
+      --success: #10B981;
+      --danger: #EF4444;
+      --danger-bg: #FEE2E2;
+
+      /* Shadows & Radius */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-nav: 0 -4px 20px rgba(0,0,0,0.05);
       
       --radius: 20px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
+    [data-theme="dark"] {
+      --bg-body: #0F172A;
+      --bg-card: #1E293B;
+      --bg-nav-mobile: rgba(30, 41, 59, 0.95);
+      --bg-subtle: #334155;
+      
+      --primary: #818cf8;
+      --primary-dim: rgba(129, 140, 248, 0.2);
+      
+      --text-main: #F9FAFB;
+      --text-muted: #94A3B8;
+      
+      --border: #334155;
+      
+      --success: #34D399;
+      --danger: #F87171;
+      --danger-bg: rgba(220, 38, 38, 0.2);
+      
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-nav: 0 -4px 20px rgba(0,0,0,0.3);
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-body);
-      background-image: radial-gradient(circle at 50% 0%, #e0e7ff 0%, transparent 40%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-bottom: 40px;
+      padding-bottom: 90px;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     /* --- HEADER --- */
     header {
-      background: rgba(255, 255, 255, 0.8);
+      background: var(--bg-nav-mobile);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 40;
-      border-bottom: 1px solid var(--border);
-      padding: 16px 20px;
+      z-index: 50;
     }
 
     .header-content {
-      max-width: 1000px;
+      max-width: 800px;
       margin: 0 auto;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .brand { display: flex; align-items: center; gap: 12px; }
     .logo-icon {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      width: 38px; height: 38px;
+      background: var(--accent-gradient);
       color: white;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
     }
+    .brand h1 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; }
 
-    .brand h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.2;
+    .header-actions { display: flex; gap: 10px; }
+    .btn-icon {
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-main);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      cursor: pointer; transition: 0.2s;
     }
+    .btn-icon:hover { background: var(--bg-subtle); transform: scale(1.05); }
 
-    .btn-outline {
-      padding: 8px 16px;
-      border-radius: 99px;
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--text-main);
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
 
-    .btn-outline:hover {
-      background: var(--bg-body);
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    /* --- MAIN --- */
+    /* --- MAIN CONTENT WRAPPER --- */
     main {
-      flex: 1;
-      max-width: 1000px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
+      flex: 1; 
+      max-width: 800px; 
+      width: 100%; 
+      margin: 0 auto; 
+      padding: 20px;
+      display: flex; 
+      flex-direction: column; 
       gap: 24px;
     }
 
-    /* --- NAV --- */
-    nav {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 4px;
-      margin: 0 -4px;
-      scrollbar-width: none;
-    }
-    nav::-webkit-scrollbar { display: none; }
 
-    nav button {
-      background: white;
-      border: 1px solid var(--border);
+    /* --- HYBRID NAVIGATION --- */
+    
+    .nav-wrapper {
+      /* Mobile Default: Fixed Bottom */
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: var(--bg-nav-mobile);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: var(--shadow-nav);
+    }
+
+    .nav-container {
+      /* Mobile: Distributed Flex */
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .nav-btn {
+      /* Mobile: Icon top, text bottom */
+      background: transparent; border: none;
       color: var(--text-muted);
-      padding: 10px 20px;
-      border-radius: 99px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; padding: 6px; flex: 1;
+      font-size: 0.7rem; font-weight: 600;
+      cursor: pointer; transition: 0.2s; border-radius: 12px;
+    }
+    
+    .nav-btn i { font-size: 1.5rem; transition: 0.2s; }
+    .nav-btn.active { color: var(--primary); }
+    .nav-btn.active i { transform: translateY(-2px); font-weight: bold; }
+
+    /* --- DESKTOP / TABLET FIX --- */
+    @media (min-width: 768px) {
+      body { padding-bottom: 40px; }
+
+      .nav-wrapper {
+        position: static; 
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 0;
+        z-index: 1;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: center; /* Center aligned */
+        gap: 12px;
+        padding: 10px 0; /* Padding to prevent clipping on active state */
+        overflow: visible; 
+      }
+
+      .nav-btn {
+        flex: 0 0 auto;
+        flex-direction: row;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 10px 24px;
+        border-radius: 99px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .nav-btn i { font-size: 1.1rem; margin: 0; transform: none !important; }
+      
+      .nav-btn:hover {
+        background: var(--bg-subtle);
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .nav-btn.active {
+        background: var(--text-main);
+        color: var(--bg-body);
+        border-color: var(--text-main);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateY(-2px);
+      }
+      
+      [data-theme="dark"] .nav-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      }
     }
 
-    nav button.active {
-      background: var(--text-main);
-      color: white;
-      border-color: var(--text-main);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transform: translateY(-1px);
-    }
-
-    nav button span.icon { filter: grayscale(1); }
-    nav button.active span.icon { filter: grayscale(0); }
-
-    /* --- SECTIONS --- */
-    .section {
-      display: none;
-      animation: fadeIn 0.4s ease;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
+    /* --- GENERAL CSS --- */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .section { display: none; animation: fadeUp 0.4s ease; grid-template-columns: 1fr; gap: 24px; }
     .section.active { display: grid; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .card {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(226, 232, 240, 0.6);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      background: var(--bg-card); border-radius: var(--radius); padding: 24px;
+      box-shadow: var(--shadow-card); border: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 16px; transition: transform 0.2s;
     }
+    @media (min-width: 768px) { .card:hover { transform: translateY(-2px); } }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .card-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 4px;
-    }
-
-    .card-subtitle { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+    .card-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-top: 2px; }
 
     .pill {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: var(--primary-light);
-      color: var(--primary-dark);
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 6px 12px;
+      border-radius: 8px; background: var(--bg-subtle); color: var(--text-muted); letter-spacing: 0.5px;
     }
 
-    .progress-bar {
-      height: 12px;
-      background: var(--bg-body);
-      border-radius: 99px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      margin-top: 6px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      width: 0%;
-      border-radius: 99px;
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .stat-box {
-      background: var(--bg-body);
-      border-radius: 16px;
-      padding: 16px;
-      text-align: center;
+      background: var(--bg-subtle); border-radius: 16px; padding: 16px; text-align: center;
       border: 1px solid transparent;
     }
-    .stat-value { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-    .stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-top: 4px;}
+    .stat-value { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; }
 
-    /* Missions */
+    .progress-bg { height: 10px; background: var(--bg-subtle); border-radius: 99px; overflow: hidden; margin-top: 8px; border: 1px solid var(--border); }
+    .progress-fill { height: 100%; background: var(--accent-gradient); width: 0%; transition: width 0.8s ease; }
+
     .mission {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-body);
-      padding: 12px 16px;
-      border-radius: 16px;
-      gap: 12px;
-      margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-subtle); padding: 16px; border-radius: 16px; margin-bottom: 12px;
+      border: 1px solid transparent; transition: 0.2s;
     }
-    .mission-title { font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
-    .mission-meta { font-size: 0.75rem; color: var(--text-muted); }
-    .xp-badge { font-size: 0.7rem; font-weight: 700; color: var(--accent); background: rgba(139, 92, 246, 0.1); padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .mission:hover { background: var(--bg-card); border-color: var(--border); }
     
     .btn-check {
-      min-width: 32px; height: 32px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: white;
-      color: transparent;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.2s;
+      width: 36px; height: 36px; border-radius: 12px; border: 2px solid var(--border);
+      background: var(--bg-card); display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: transparent; cursor: pointer; transition: 0.2s;
     }
-    .btn-check.completed { background: var(--success); border-color: var(--success); color: white; cursor: default; }
+    .btn-check.completed { background: var(--success); border-color: var(--success); color: white; transform: scale(1.1); }
 
-    /* Timer */
-    .timer-display {
-      font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 700;
-      text-align: center; color: var(--text-main); margin: 10px 0; letter-spacing: -2px;
+    input, select, textarea {
+      width: 100%; padding: 14px; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--bg-subtle); color: var(--text-main); outline: none;
+      font-family: inherit; font-size: 0.95rem; transition: 0.2s;
     }
-    .timer-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); background: var(--bg-card); box-shadow: 0 0 0 3px var(--primary-dim); }
 
-    /* Buttons */
     .btn {
-      border: none; padding: 12px 20px; border-radius: 12px;
-      font-size: 0.9rem; font-weight: 600; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      transition: transform 0.1s;
+      border: none; padding: 14px; border-radius: 14px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem;
+      transition: 0.2s;
     }
-    .btn:active { transform: scale(0.96); }
-    .btn-primary { background: var(--text-main); color: white; }
-    .btn-secondary { background: white; color: var(--text-main); border: 1px solid var(--border); }
-    .btn-accent { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
-    .btn-danger { background: #fee2e2; color: #ef4444; }
-    
-    /* Social Buttons */
-    .btn-whatsapp { 
-      background: #25D366; 
-      color: white; 
-      width: 100%; 
-      margin-bottom: 8px;
-      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-      font-size: 1rem;
-      padding: 14px;
-    }
-    .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
-    
-    .w-full { width: 100%; }
-    input, select, textarea { width: 100%; border-radius: 12px; border: 1px solid var(--border); padding: 12px; background: var(--bg-body); outline: none; }
-    
-    /* Modals */
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
-      z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.3s;
-    }
-    .modal-backdrop.show { display: flex; opacity: 1; }
-    .modal {
-      background: white; border-radius: 24px; padding: 24px; width: 100%; max-width: 440px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: scale(0.95); transition: transform 0.3s;
-      text-align: left;
-    }
-    .modal.center-text { text-align: center; }
-    .modal-backdrop.show .modal { transform: scale(1); }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--text-main); color: var(--bg-body); }
+    [data-theme="dark"] .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-subtle); }
+    .btn-accent { background: var(--accent-gradient); color: white; }
+    .btn-danger { background: var(--danger-bg); color: var(--danger); }
+    .btn-whatsapp { background: #25D366; color: white; font-weight: 700; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
 
-    /* Animations for Celebration */
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .fire-anim { font-size: 4rem; display: inline-block; animation: bounce 1.5s infinite ease-in-out; margin-bottom: 10px; }
+    .timer-display { font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 800; text-align: center; margin: 24px 0; letter-spacing: -2px; }
+
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-backdrop.show { display: flex; animation: fadeIn 0.3s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     
-    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .chip { background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 0.85rem; cursor: pointer; color: var(--text-muted); }
+    .modal {
+      background: var(--bg-card); width: 100%; max-width: 400px; border-radius: 24px; padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 1px solid var(--border);
+    }
+
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip {
+      background: var(--bg-subtle); border: 1px solid var(--border); padding: 8px 14px;
+      border-radius: 10px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer; transition: 0.2s;
+    }
     .chip.selected { background: var(--primary); color: white; border-color: var(--primary); }
-    
-    footer { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: auto; padding: 20px; }
+
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="header-content">
       <div class="brand">
-        <div class="logo-icon">✝</div>
-        <div>
-          <h1>Trilha da Fé</h1>
-        </div>
+        <div class="logo-icon"><i class="ph-bold ph-cross"></i></div>
+        <h1>Faith Journey</h1>
       </div>
-      <button class="btn-outline" id="btn-open-onboarding">Ajustar</button>
+      <div class="header-actions">
+        <button class="btn-icon" id="theme-toggle"><i class="ph ph-moon"></i></button>
+        <button class="btn-icon" id="btn-open-onboarding"><i class="ph ph-gear"></i></button>
+      </div>
     </div>
   </header>
 
+  <!-- MAIN CONTENT -->
   <main>
-    <nav>
-      <button class="active" data-section="dashboard"> <span class="icon">🏠</span> Painel </button>
-      <button data-section="missions"> <span class="icon">✨</span> Missões </button>
-      <button data-section="timer"> <span class="icon">⏱️</span> Tempo </button>
-      <button data-section="reflections"> <span class="icon">💬</span> Diário </button>
-      <button data-section="profile"> <span class="icon">👤</span> Perfil </button>
+    
+    <!-- NAVIGATION -->
+    <nav class="nav-wrapper">
+      <div class="nav-container">
+        <button class="nav-btn active" data-section="dashboard">
+          <i class="ph ph-house"></i>
+          <span>Home</span>
+        </button>
+        <button class="nav-btn" data-section="missions">
+          <i class="ph ph-check-circle"></i>
+          <span>Missions</span>
+        </button>
+        <button class="nav-btn" data-section="timer">
+          <i class="ph ph-hourglass"></i>
+          <span>Timer</span>
+        </button>
+        <button class="nav-btn" data-section="reflections">
+          <i class="ph ph-notebook"></i>
+          <span>Journal</span>
+        </button>
+        <button class="nav-btn" data-section="profile">
+          <i class="ph ph-user"></i>
+          <span>Profile</span>
+        </button>
+      </div>
     </nav>
 
     <!-- DASHBOARD -->
     <section class="section active" id="section-dashboard">
-      <div class="card" style="grid-column: 1 / -1;">
+      <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title">Olá, <span id="level-name">Peregrino</span></div>
-            <div class="card-subtitle">Continue firme na caminhada.</div>
+            <div class="card-title">Hello, <span id="level-name">Pilgrim</span></div>
+            <div class="card-subtitle">Your journey today.</div>
           </div>
-          <div class="pill" id="today-label">Hoje</div>
+          <div class="pill" id="today-label">Today</div>
         </div>
 
         <div class="stats-grid">
            <div class="stat-box">
              <span class="stat-value" id="streak-days">0</span>
-             <span class="stat-label">Dias seguidos 🔥</span>
+             <span class="stat-label">Day Streak 🔥</span>
            </div>
            <div class="stat-box">
              <span class="stat-value" id="xp-total">0</span>
-             <span class="stat-label">XP Total</span>
+             <span class="stat-label">Total XP</span>
            </div>
         </div>
 
-        <div style="margin-top:8px;">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">
-             <span>Nível <span id="header-level">1</span></span>
+        <div style="margin-top:4px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px; font-weight:600;">
+             <span>Level <span id="header-level">1</span></span>
              <span id="next-level-label">0/100 XP</span>
           </div>
-          <div class="progress-bar">
+          <div class="progress-bg">
             <div class="progress-fill" id="progress-fill"></div>
           </div>
         </div>
@@ -388,474 +397,380 @@
 
       <div class="card">
         <div class="card-header">
-          <div class="card-title">💡 Foco de Hoje</div>
-          <div class="pill" id="profile-focus-pill">Geral</div>
+          <div class="card-title">💡 Today's Focus</div>
+          <div class="pill" id="profile-focus-pill">General</div>
         </div>
         <p id="today-suggestion" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">...</p>
       </div>
 
       <div class="card">
-        <div class="card-header"><div class="card-title">📊 Resumo do Dia</div></div>
-        <div style="font-size:0.9rem; display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border);">
-          <span>Missões</span> <strong id="missions-today">0/5</strong>
+        <div class="card-header"><div class="card-title">📊 Daily Summary</div></div>
+        <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border);">
+          <span style="color:var(--text-muted)">Completed Missions</span> <strong id="missions-today" style="color:var(--text-main)">0/5</strong>
         </div>
-        <div style="font-size:0.9rem; display:flex; justify-content:space-between; padding:8px 0;">
-          <span>Reflexões</span> <strong id="reflections-count">0</strong>
+        <div style="display:flex; justify-content:space-between; padding:12px 0;">
+          <span style="color:var(--text-muted)">Journal Entries</span> <strong id="reflections-count" style="color:var(--text-main)">0</strong>
         </div>
       </div>
     </section>
 
-    <!-- MISSÕES -->
+    <!-- MISSIONS -->
     <section class="section" id="section-missions">
-      <div class="card" style="grid-column: 1 / -1;">
+      <div class="card">
         <div class="card-header">
-          <div>
-            <div class="card-title">Missões Diárias</div>
-            <div class="card-subtitle">Complete todas para acender a chama!</div>
-          </div>
-          <span class="pill" id="today-label-missions">Hoje</span>
+          <div class="card-title">Daily Missions</div>
+          <div class="pill">XP</div>
         </div>
-        <div class="missions-list" id="missions-list"></div>
+        <div id="missions-list"></div>
       </div>
 
       <div class="card">
-        <div class="card-header"><div class="card-title">🎯 Propósito</div></div>
+        <div class="card-header"><div class="card-title">🎯 Purpose</div></div>
         <select id="purpose-select" style="margin-bottom:12px;">
-          <option value="">Sem propósito definido</option>
-          <option value="7">7 dias com Deus</option>
-          <option value="21">Jejum de Daniel (21 dias)</option>
-          <option value="30">30 dias de Provérbios</option>
-          <option value="gratidao">Semana da Gratidão</option>
+          <option value="">No purpose defined</option>
+          <option value="7">7 Days with God</option>
+          <option value="21">Daniel Fast (21 days)</option>
+          <option value="30">30 Days of Proverbs</option>
         </select>
-        <textarea id="purpose-notes" placeholder="Seu objetivo..."></textarea>
-        <button class="btn btn-secondary w-full" style="margin-top:12px;" id="btn-save-purpose">Salvar Propósito</button>
+        <textarea id="purpose-notes" placeholder="Your personal goal..." rows="3"></textarea>
+        <button class="btn btn-secondary" style="width:100%; margin-top:12px;" id="btn-save-purpose">Save Purpose</button>
       </div>
     </section>
 
     <!-- TIMER -->
     <section class="section" id="section-timer">
-      <div class="card" style="grid-column: 1 / -1; text-align:center; padding-bottom: 40px;">
-        <div class="pill" style="align-self:center; margin-bottom:10px;" id="timer-status-pill">Pronto</div>
+      <div class="card" style="text-align:center; padding: 40px 24px;">
+        <div class="pill" style="display:inline-block; margin-bottom:10px;" id="timer-status-pill">Ready</div>
         <div class="timer-display" id="timer-display">00:00</div>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:24px;">Aquietai-vos e sabei que eu sou Deus.</p>
-        <div class="timer-actions">
-          <button class="btn btn-accent" data-timer-type="oracao" data-minutes="5">🙏 Oração 5m</button>
-          <button class="btn btn-primary" data-timer-type="devocional" data-minutes="10">📖 Leitura 10m</button>
-          <button class="btn btn-danger" id="btn-stop-timer">Parar</button>
+        <p style="color:var(--text-muted); margin-bottom:30px; font-style:italic;">"Be still, and know that I am God."</p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+           <button class="btn btn-accent" data-timer-type="oracao" data-minutes="5"><i class="ph-bold ph-hands-praying"></i> 5m</button>
+           <button class="btn btn-primary" data-timer-type="devocional" data-minutes="10"><i class="ph-bold ph-book-open"></i> 10m</button>
         </div>
+        <button class="btn btn-danger" style="width:100%; margin-top:12px;" id="btn-stop-timer">Stop Moment</button>
       </div>
     </section>
 
-    <!-- REFLEXÕES -->
+    <!-- REFLECTIONS -->
     <section class="section" id="section-reflections">
-      <div class="card" style="grid-column: 1 / -1;">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Diário Espiritual</div>
-            <div class="card-subtitle">O que Deus falou com você?</div>
-          </div>
-        </div>
-        <textarea id="reflection-input" placeholder="Hoje eu aprendi que..." style="min-height:120px;"></textarea>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
-          <span style="font-size:0.8rem; color:var(--success); font-weight:600;">+10 XP</span>
-          <button class="btn btn-primary" id="btn-save-reflection">Salvar</button>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Spiritual Journal</div></div>
+        <textarea id="reflection-input" placeholder="What did God speak to you today?" style="min-height:140px; margin-top:10px;"></textarea>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px;">
+          <span style="font-size:0.8rem; color:var(--success); font-weight:700;">+10 XP</span>
+          <button class="btn btn-primary" id="btn-save-reflection">Save</button>
         </div>
       </div>
-      <div class="card" style="grid-column: 1 / -1;">
-        <div class="card-header"><div class="card-title">Histórico</div></div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">History</div></div>
         <div id="reflections-list"></div>
       </div>
     </section>
 
-    <!-- PERFIL -->
+    <!-- PROFILE -->
     <section class="section" id="section-profile">
       <div class="card">
-        <div class="card-header"><div class="card-title">Dados da Jornada</div></div>
-        <div class="stats-grid" style="grid-template-columns: 1fr;">
-          <div class="stat-box" style="align-items:flex-start; text-align:left;">
-            <span class="stat-label">Estado Atual</span> <span class="stat-value" style="font-size:1.1rem;" id="profile-estado">—</span>
+        <div class="card-header"><div class="card-title">Your Data</div></div>
+        <div class="stats-grid" style="grid-template-columns: 1fr; text-align:left; gap:0;">
+          <div style="padding:16px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+            <span style="color:var(--text-muted)">Status</span> <strong id="profile-estado">—</strong>
           </div>
-          <div class="stat-box" style="align-items:flex-start; text-align:left;">
-            <span class="stat-label">Foco</span> <span class="stat-value" style="font-size:1.1rem;" id="profile-foco">—</span>
+          <div style="padding:16px 0; display:flex; justify-content:space-between;">
+            <span style="color:var(--text-muted)">Focus</span> <strong id="profile-foco">—</strong>
           </div>
         </div>
         <div id="medals-tags" class="chip-group" style="margin-top:16px;"></div>
       </div>
-      <div class="card">
-        <div class="card-header"><div class="card-title text-danger">Zona de Perigo</div></div>
-        <button class="btn btn-danger w-full" id="btn-reset-data">Apagar tudo</button>
+      <div class="card" style="border-color:var(--danger-bg);">
+        <button class="btn btn-danger" style="width:100%" id="btn-reset-data">Reset All Data</button>
       </div>
     </section>
   </main>
 
-  <footer>Trilha da Fé v2.3 • Sua jornada, seu tempo.</footer>
-
   <!-- MODAL ONBOARDING -->
   <div class="modal-backdrop" id="onboarding-backdrop">
     <div class="modal">
-      <h2>Personalize sua Trilha</h2>
-      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Responda para receber orientações melhores.</p>
+      <h2 style="font-family:'Outfit'; font-weight:700; margin-bottom:8px;">Adjust Path</h2>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">Customize your experience.</p>
       
       <div style="margin-bottom:20px;">
-        <label style="font-weight:600; font-size:0.9rem;">Vida espiritual hoje?</label>
+        <label style="font-weight:600; font-size:0.9rem;">Spiritual life today?</label>
         <div class="chip-group" id="chips-estado">
-          <button class="chip" data-value="Fraca">Preciso de ajuda</button>
-          <button class="chip" data-value="Média">Média</button>
-          <button class="chip" data-value="Boa">Boa</button>
+          <button class="chip" data-value="Struggling">Struggling</button>
+          <button class="chip" data-value="Average">Average</button>
+          <button class="chip" data-value="Good">Good</button>
         </div>
       </div>
       
       <div style="margin-bottom:20px;">
-        <label style="font-weight:600; font-size:0.9rem;">Tempo disponível?</label>
+        <label style="font-weight:600; font-size:0.9rem;">Available time?</label>
         <div class="chip-group" id="chips-tempo">
-          <button class="chip" data-value="3 minutos">3 min</button>
-          <button class="chip" data-value="10 minutos">10 min</button>
-          <button class="chip" data-value="15 minutos ou mais">15+ min</button>
+          <button class="chip" data-value="3 minutes">3 min</button>
+          <button class="chip" data-value="10 minutes">10 min</button>
+          <button class="chip" data-value="15 minutes or more">15+ min</button>
         </div>
       </div>
 
       <div style="margin-bottom:24px;">
-        <label style="font-weight:600; font-size:0.9rem;">Foco principal?</label>
+        <label style="font-weight:600; font-size:0.9rem;">Main focus?</label>
         <div class="chip-group" id="chips-foco">
-          <button class="chip" data-value="Oração">Oração</button>
-          <button class="chip" data-value="Leitura bíblica">Bíblia</button>
-          <button class="chip" data-value="Tudo combinado">Tudo</button>
+          <button class="chip" data-value="Prayer">Prayer</button>
+          <button class="chip" data-value="Bible Reading">Bible</button>
+          <button class="chip" data-value="Mixed">All</button>
         </div>
       </div>
       
-      <div style="display:flex; justify-content:flex-end; gap:10px;">
-        <button class="btn btn-secondary" id="btn-cancel-onboarding">Cancelar</button>
-        <button class="btn btn-primary" id="btn-save-onboarding">Salvar</button>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-secondary" style="flex:1" id="btn-cancel-onboarding">Cancel</button>
+        <button class="btn btn-primary" style="flex:1" id="btn-save-onboarding">Save</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL SHARE / CELEBRATION -->
+  <!-- MODAL SHARE -->
   <div class="modal-backdrop" id="share-backdrop">
-    <div class="modal center-text">
-      <div class="fire-anim">🔥</div>
-      <h2 style="font-size:1.5rem; margin-bottom:8px; color:var(--text-main);">Diária Concluída!</h2>
-      <p style="color:var(--text-muted); margin-bottom:24px;">
-        Parabéns! Você completou todas as missões de hoje e manteve o fogo aceso por 
-        <strong style="color:var(--primary);" id="share-streak-val">0</strong> dias.
-      </p>
-      
-      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">Convide amigos para essa jornada:</p>
-      
-      <!-- APENAS WHATSAPP AGORA -->
-      <button class="btn btn-whatsapp" onclick="shareProgress()">
-        💬 Compartilhar no WhatsApp
-      </button>
-      
-      <button class="btn btn-secondary w-full" style="margin-top:12px; font-size:0.8rem;" onclick="closeShareModal()">
-        Fechar
-      </button>
+    <div class="modal" style="text-align:center;">
+      <div style="font-size:4rem; margin-bottom:10px; animation:bounce 2s infinite">🔥</div>
+      <h2 style="font-family:'Outfit'; font-weight:700;">Congratulations!</h2>
+      <p style="color:var(--text-muted); margin:10px 0 24px;">You completed everything for today. <br>Streak: <strong id="share-streak-val" style="color:var(--primary)">0</strong> days.</p>
+      <button class="btn btn-whatsapp" style="width:100%" onclick="shareProgress()">Share Victory</button>
+      <button class="btn btn-secondary" style="width:100%; margin-top:10px;" onclick="closeShareModal()">Close</button>
     </div>
   </div>
 
   <script>
-    /* Lógica Principal */
-    const STORAGE_KEY = "trilhaDaFeData_v3";
+    // --- THEME LOGIC ---
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    const themeIcon = themeBtn.querySelector('i');
 
+    function toggleTheme() {
+      const isLight = htmlEl.getAttribute('data-theme') === 'light';
+      const newTheme = isLight ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', newTheme);
+      localStorage.setItem('faithTheme', newTheme);
+      themeIcon.className = newTheme === 'light' ? 'ph ph-moon' : 'ph ph-sun';
+    }
+    themeBtn.addEventListener('click', toggleTheme);
+    
+    const savedTheme = localStorage.getItem('faithTheme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeIcon.className = savedTheme === 'light' ? 'ph ph-moon' : 'ph ph-sun';
+
+    // --- APP LOGIC ---
+    const STORAGE_KEY = "faithJourney_V1_EN";
+    
     const LEVELS = [
-      { name: "Peregrino", xp: 0 },
-      { name: "Discípulo", xp: 100 },
-      { name: "Servo Fiel", xp: 250 },
-      { name: "Atalaia", xp: 500 },
-      { name: "Guerreiro", xp: 800 },
-      { name: "Missionário", xp: 1700 },
-      { name: "Coluna da Fé", xp: 4000 }
+      { name: "Pilgrim", xp: 0 }, { name: "Disciple", xp: 100 },
+      { name: "Watchman", xp: 500 }, { name: "Warrior", xp: 1000 },
+      { name: "Missionary", xp: 2500 }
     ];
 
     const DAILY_MISSIONS = [
-      { id: "versiculo", title: "Ler Versículo", description: "Medite na palavra.", xp: 10 },
-      { id: "reflexao", title: "Reflexão", description: "Pense no céu por 1 min.", xp: 15 },
-      { id: "oracao3", title: "Oração Rápida", description: "Fale com Deus (3 min).", xp: 20 },
-      { id: "devocional", title: "Devocional", description: "Leia um texto curto.", xp: 15 },
-      { id: "gratidao", title: "Gratidão", description: "Agradeça por algo.", xp: 10 }
+      { id: "versiculo", title: "Verse of the Day", desc: "Read and meditate.", xp: 10 },
+      { id: "reflexao", title: "Reflective Pause", desc: "Think on eternity (1 min).", xp: 15 },
+      { id: "oracao", title: "Prayer", desc: "Talk to God.", xp: 20 },
+      { id: "leitura", title: "Bible Reading", desc: "Solid spiritual food.", xp: 15 },
+      { id: "gratidao", title: "Gratitude", desc: "Express thanks.", xp: 10 }
     ];
 
-    const TIMER_XP = { oracao: 20, devocional: 15 };
-
     let state = {
-      xp: 0,
-      streak: 0,
-      lastActiveDate: null,
-      profile: { estado: null, tempo: null, foco: null },
-      missionsDone: {},
-      reflections: {},
-      purposes: { type: null, notes: "" }
+      xp: 0, streak: 0, lastActive: null,
+      profile: { estado: null, foco: null },
+      missions: {}, reflections: {}, purpose: ""
     };
 
-    function getTodayString() { return new Date().toISOString().slice(0, 10); }
-
-    function loadState() {
+    function init() {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) try { state = { ...state, ...JSON.parse(raw) }; } catch (e) { console.error(e); }
+      if(raw) state = { ...state, ...JSON.parse(raw) };
+      renderAll();
+      if(!state.profile.foco) setTimeout(() => document.getElementById("onboarding-backdrop").classList.add("show"), 800);
     }
 
-    function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-
-    function resetState() {
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
+    function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    function getToday() { return new Date().toISOString().slice(0,10); }
 
     function addXP(amount) {
-      if (amount <= 0) return;
       state.xp += amount;
-      updateStreakOnActivity();
-      saveState();
-      renderDashboard();
-    }
-
-    function updateStreakOnActivity() {
-      const today = getTodayString();
-      if (!state.lastActiveDate) {
-        state.streak = 1;
-      } else {
-        const last = new Date(state.lastActiveDate);
-        const todayDate = new Date(today);
-        const diffTime = todayDate - last;
-        const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-        if (diffDays >= 1 && diffDays < 2) state.streak += 1;
-        else if (diffDays >= 2 || diffDays < 0) state.streak = 1;
+      const today = getToday();
+      if(state.lastActive !== today) {
+        const diff = state.lastActive ? (new Date(today) - new Date(state.lastActive))/(1000*60*60*24) : 1;
+        if(diff >= 1 && diff < 2) state.streak++;
+        else if(diff >= 2) state.streak = 1;
+        else if(!state.lastActive) state.streak = 1;
+        state.lastActive = today;
       }
-      state.lastActiveDate = today;
-    }
-
-    function getLevelFromXP(xp) {
-      let currentLevel = LEVELS[0], nextLevel = null;
-      for (let i = 0; i < LEVELS.length; i++) {
-        if (xp >= LEVELS[i].xp) {
-          currentLevel = LEVELS[i];
-          nextLevel = LEVELS[i + 1] || null;
-        }
-      }
-      return { currentLevel, nextLevel };
-    }
-
-    function formatDateLabel(dateStr) {
-      const d = new Date(dateStr + "T00:00:00");
-      if (isNaN(d.getTime())) return dateStr;
-      return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long" });
-    }
-
-    /* Rendering */
-    function renderDashboard() {
-      const today = getTodayString();
-      document.getElementById("today-label").textContent = formatDateLabel(today);
-      document.getElementById("today-label-missions").textContent = formatDateLabel(today);
-
-      const { currentLevel, nextLevel } = getLevelFromXP(state.xp);
-      document.getElementById("level-name").textContent = currentLevel.name;
-      document.getElementById("header-level").textContent = (LEVELS.indexOf(currentLevel) + 1);
-      document.getElementById("xp-total").textContent = state.xp;
-      document.getElementById("streak-days").textContent = state.streak;
-
-      let progressPercent = 100, progressText = "Nível Máximo";
-      if (nextLevel) {
-        const spanXP = nextLevel.xp - currentLevel.xp;
-        const gainXP = state.xp - currentLevel.xp;
-        progressPercent = Math.min(100, Math.max(0, (gainXP / spanXP) * 100));
-        progressText = `${Math.floor(gainXP)} / ${spanXP} XP`;
-      }
-      document.getElementById("next-level-label").textContent = progressText;
-      document.getElementById("progress-fill").style.width = progressPercent + "%";
-
-      const doneToday = state.missionsDone[today] || {};
-      document.getElementById("missions-today").textContent = Object.keys(doneToday).length + " / 5";
-      document.getElementById("reflections-count").textContent = Object.keys(state.reflections).length;
-
-      const { foco } = state.profile;
-      const suggEl = document.getElementById("today-suggestion");
-      const pill = document.getElementById("profile-focus-pill");
-      
-      if(foco) {
-        pill.textContent = foco;
-        if(foco === "Oração") suggEl.textContent = "Dedique tempo para falar com o Pai em segredo.";
-        else if(foco.includes("Bíblica")) suggEl.textContent = "Leia Salmos ou Provérbios e encontre sabedoria.";
-        else suggEl.textContent = "Busque equilíbrio: Palavra e oração.";
-      } else {
-        pill.textContent = "Geral";
-        suggEl.textContent = "Clique em 'Ajustar' para personalizar.";
-      }
-    }
-
-    function renderMissions() {
-      const list = document.getElementById("missions-list");
-      list.innerHTML = "";
-      const today = getTodayString();
-      const doneToday = state.missionsDone[today] || {};
-
-      DAILY_MISSIONS.forEach(m => {
-        const isDone = !!doneToday[m.id];
-        const div = document.createElement("div");
-        div.className = "mission";
-        div.innerHTML = `
-          <div class="mission-info">
-            <div style="display:flex;align-items:center;">
-              <span class="mission-title">${m.title}</span>
-              <span class="xp-badge">+${m.xp}</span>
-            </div>
-            <span class="mission-meta">${m.description}</span>
-          </div>
-          <button class="btn-check ${isDone ? 'completed' : ''}">${isDone ? '✓' : ''}</button>
-        `;
-        
-        div.querySelector("button").addEventListener("click", () => {
-          if(!isDone) {
-            if(!state.missionsDone[today]) state.missionsDone[today] = {};
-            state.missionsDone[today][m.id] = true;
-            addXP(m.xp);
-            renderMissions();
-            renderDashboard();
-            checkDailyCompletion(today);
-          }
-        });
-        list.appendChild(div);
-      });
-    }
-
-    function renderReflections() {
-      const list = document.getElementById("reflections-list");
-      list.innerHTML = "";
-      const dates = Object.keys(state.reflections).sort().reverse();
-      if(dates.length === 0) { list.innerHTML = "<div style='color:var(--text-muted); font-size:0.8rem; text-align:center;'>Sem registros.</div>"; return; }
-      dates.forEach(date => {
-        const item = document.createElement("div");
-        item.className = "reflection-item";
-        item.style.marginBottom = "8px";
-        item.style.padding = "10px";
-        item.style.background = "var(--bg-body)";
-        item.style.borderRadius = "10px";
-        item.innerHTML = `<div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${formatDateLabel(date)}</div><div style="font-size:0.9rem;">${state.reflections[date].text}</div>`;
-        list.appendChild(item);
-      });
-    }
-
-    function renderProfile() {
-      document.getElementById("profile-estado").textContent = state.profile.estado || "—";
-      document.getElementById("profile-foco").textContent = state.profile.foco || "—";
-      document.getElementById("purpose-select").value = state.purposes.type || "";
-      document.getElementById("purpose-notes").value = state.purposes.notes || "";
-      
-      const container = document.getElementById("medals-tags");
-      container.innerHTML = "";
-      if(state.xp > 100) container.innerHTML += '<div class="chip selected" style="cursor:default">🏅 Leitor Fiel</div>';
-      if(state.streak >= 3) container.innerHTML += '<div class="chip selected" style="cursor:default">🔥 Persistente</div>';
+      save(); renderAll();
     }
 
     function renderAll() {
-      renderDashboard(); renderMissions(); renderReflections(); renderProfile();
-    }
-
-    /* --- SHARING LOGIC --- */
-    function checkDailyCompletion(today) {
-      const doneCount = Object.keys(state.missionsDone[today]).length;
-      if (doneCount === DAILY_MISSIONS.length) {
-        // Mostra o modal de celebração
-        document.getElementById("share-streak-val").textContent = state.streak;
-        document.getElementById("share-backdrop").classList.add("show");
-        
-        // Efeito simples de confete (simulado com emoji title)
-        document.title = "🎉 Parabéns! 🎉";
-        setTimeout(() => document.title = "Trilha da Fé", 3000);
-      }
-    }
-
-    function closeShareModal() {
-      document.getElementById("share-backdrop").classList.remove("show");
-    }
-
-    function shareProgress() {
-      const streak = state.streak;
-      const text = `🔥 Acabei de completar minha jornada diária na *Trilha da Fé*! Já são ${streak} dias seguidos mantendo a chama acesa. Venha participar também e fortaleça sua caminhada! ✝️ #TrilhaDaFe`;
+      const today = getToday();
       
-      // Abre WhatsApp
-      const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
-      window.open(waUrl, '_blank');
+      // Stats
+      document.getElementById("xp-total").textContent = state.xp;
+      document.getElementById("streak-days").textContent = state.streak;
+      
+      // Level
+      let lvl = LEVELS[0], next = null;
+      LEVELS.forEach(l => { if(state.xp >= l.xp) lvl = l; });
+      next = LEVELS[LEVELS.indexOf(lvl)+1];
+      
+      document.getElementById("level-name").textContent = lvl.name;
+      document.getElementById("header-level").textContent = LEVELS.indexOf(lvl)+1;
+      
+      if(next) {
+        const pct = Math.min(100, ((state.xp - lvl.xp) / (next.xp - lvl.xp))*100);
+        document.getElementById("progress-fill").style.width = pct + "%";
+        document.getElementById("next-level-label").textContent = `${Math.floor(state.xp - lvl.xp)}/${next.xp - lvl.xp}`;
+      } else {
+        document.getElementById("progress-fill").style.width = "100%";
+        document.getElementById("next-level-label").textContent = "Max";
+      }
+
+      // Missions
+      const list = document.getElementById("missions-list");
+      list.innerHTML = "";
+      const done = state.missions[today] || {};
+      
+      DAILY_MISSIONS.forEach(m => {
+        const isDone = !!done[m.id];
+        const div = document.createElement("div");
+        div.className = "mission";
+        div.innerHTML = `
+          <div>
+            <div style="font-weight:700; font-size:0.9rem;">${m.title}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${m.desc}</div>
+          </div>
+          <div class="btn-check ${isDone ? 'completed':''}">
+            ${isDone ? '<i class="ph-bold ph-check"></i>' : `<span style="font-size:0.65rem; color:var(--text-muted); font-weight:700;">+${m.xp}</span>`}
+          </div>
+        `;
+        if(!isDone) div.onclick = () => {
+          if(!state.missions[today]) state.missions[today] = {};
+          state.missions[today][m.id] = true;
+          addXP(m.xp);
+          renderAll();
+          if(Object.keys(state.missions[today]).length === DAILY_MISSIONS.length) {
+            document.getElementById("share-streak-val").textContent = state.streak;
+            document.getElementById("share-backdrop").classList.add("show");
+          }
+        };
+        list.appendChild(div);
+      });
+
+      document.getElementById("missions-today").textContent = Object.keys(done).length + "/" + DAILY_MISSIONS.length;
+      
+      // Reflections
+      const rList = document.getElementById("reflections-list");
+      rList.innerHTML = "";
+      const dates = Object.keys(state.reflections).sort().reverse();
+      document.getElementById("reflections-count").textContent = dates.length;
+      
+      if(dates.length === 0) rList.innerHTML = "<div style='text-align:center; font-size:0.8rem; color:var(--text-muted); padding:10px;'>No entries yet.</div>";
+      
+      dates.forEach(d => {
+        const item = document.createElement("div");
+        item.style.padding = "14px"; item.style.background = "var(--bg-subtle)"; 
+        item.style.borderRadius = "12px"; item.style.marginBottom = "8px";
+        
+        // Date formatting in English (MM/DD/YYYY)
+        const dateObj = new Date(d);
+        const dateStr = dateObj.toLocaleDateString("en-US", { month: 'short', day: 'numeric', year: 'numeric' });
+
+        item.innerHTML = `<div style="font-size:0.7rem; font-weight:700; color:var(--primary); margin-bottom:4px;">${dateStr}</div><div style="font-size:0.95rem; line-height:1.5;">${state.reflections[d]}</div>`;
+        rList.appendChild(item);
+      });
+
+      // Profile
+      document.getElementById("profile-estado").textContent = state.profile.estado || "—";
+      document.getElementById("profile-foco").textContent = state.profile.foco || "—";
+      
+      const sugg = document.getElementById("today-suggestion");
+      const f = state.profile.foco;
+      if(f === "Prayer") sugg.textContent = "Set aside quality time in secret today.";
+      else if(f === "Bible Reading") sugg.textContent = "Read Psalms for comfort or Proverbs for wisdom.";
+      else sugg.textContent = "Balance the Word and Prayer in your day.";
     }
 
-    /* Interactions */
-    document.querySelectorAll("nav button").forEach(btn => {
+    // Actions
+    document.querySelectorAll(".nav-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+        window.scrollTo({top:0, behavior:'smooth'});
         document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
         document.getElementById("section-" + btn.dataset.section).classList.add("active");
       });
     });
 
-    document.getElementById("btn-save-reflection").addEventListener("click", () => {
-      const txt = document.getElementById("reflection-input").value.trim();
-      if(!txt) return alert("Escreva algo!");
-      state.reflections[getTodayString()] = { text: txt };
+    document.getElementById("btn-save-reflection").onclick = () => {
+      const val = document.getElementById("reflection-input").value.trim();
+      if(!val) return;
+      state.reflections[getToday()] = val;
       addXP(10);
       document.getElementById("reflection-input").value = "";
-      renderReflections(); renderDashboard();
-      alert("Salvo (+10 XP)!");
-    });
+      alert("Saved (+10 XP)!");
+    };
 
-    document.getElementById("btn-save-purpose").addEventListener("click", () => {
-      state.purposes.type = document.getElementById("purpose-select").value;
-      state.purposes.notes = document.getElementById("purpose-notes").value;
-      saveState(); alert("Propósito salvo!");
-    });
+    document.getElementById("btn-save-purpose").onclick = () => {
+      state.purpose = document.getElementById("purpose-notes").value;
+      save(); alert("Purpose saved!");
+    };
 
-    let timerInt = null;
+    document.getElementById("btn-reset-data").onclick = () => {
+      if(confirm("Are you sure? This will delete all progress.")) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
+    };
+
+    let timerInt;
     document.querySelectorAll("[data-timer-type]").forEach(btn => {
-      btn.addEventListener("click", () => {
+      btn.onclick = () => {
         if(timerInt) clearInterval(timerInt);
-        let sec = parseInt(btn.dataset.minutes) * 60;
+        let sec = btn.dataset.minutes * 60;
         const display = document.getElementById("timer-display");
         const status = document.getElementById("timer-status-pill");
-        status.textContent = "Em andamento...";
-        status.style.background = "#e0e7ff"; status.style.color = "#4f46e5";
+        status.textContent = "Running..."; status.style.color = "var(--primary)";
         
         timerInt = setInterval(() => {
           sec--;
           display.textContent = `${Math.floor(sec/60).toString().padStart(2,'0')}:${(sec%60).toString().padStart(2,'0')}`;
-          if(sec <= 0) {
-            clearInterval(timerInt);
-            addXP(TIMER_XP[btn.dataset.timerType]);
-            status.textContent = "Concluído!";
-            status.style.background = "#d1fae5"; status.style.color = "#065f46";
-            alert("Tempo finalizado! XP Ganho.");
+          if(sec<=0) { 
+            clearInterval(timerInt); 
+            addXP(btn.dataset.timerType === 'oracao' ? 20 : 15); 
+            status.textContent = "Done!"; status.style.color = "var(--success)";
+            alert("Timer finished! XP Earned.");
           }
         }, 1000);
-      });
+      };
     });
-    
-    document.getElementById("btn-stop-timer").addEventListener("click", () => {
-      if(timerInt) clearInterval(timerInt);
-      document.getElementById("timer-display").textContent = "00:00";
-      document.getElementById("timer-status-pill").textContent = "Parado";
+    document.getElementById("btn-stop-timer").onclick = () => {
+       if(timerInt) clearInterval(timerInt);
+       document.getElementById("timer-display").textContent = "00:00";
+       document.getElementById("timer-status-pill").textContent = "Idle";
+    };
+
+    const modal = document.getElementById("onboarding-backdrop");
+    const chips = (id) => document.querySelectorAll(`#${id} .chip`).forEach(c => c.onclick = () => {
+      document.querySelectorAll(`#${id} .chip`).forEach(x => x.classList.remove("selected"));
+      c.classList.add("selected");
     });
+    chips("chips-estado"); chips("chips-tempo"); chips("chips-foco");
 
-    document.getElementById("btn-reset-data").addEventListener("click", () => { if(confirm("Apagar tudo?")) resetState(); });
-
-    // Onboarding
-    const modalOnb = document.getElementById("onboarding-backdrop");
-    const setupChips = (id) => document.querySelectorAll(`#${id} .chip`).forEach(c => c.addEventListener("click", () => {
-       document.querySelectorAll(`#${id} .chip`).forEach(x => x.classList.remove("selected")); c.classList.add("selected");
-    }));
-    setupChips("chips-estado"); setupChips("chips-tempo"); setupChips("chips-foco");
-
-    document.getElementById("btn-open-onboarding").addEventListener("click", () => modalOnb.classList.add("show"));
-    document.getElementById("btn-cancel-onboarding").addEventListener("click", () => modalOnb.classList.remove("show"));
-    document.getElementById("btn-save-onboarding").addEventListener("click", () => {
-      const val = (id) => { const el = document.querySelector(`#${id} .chip.selected`); return el ? el.dataset.value : null; };
+    document.getElementById("btn-open-onboarding").onclick = () => modal.classList.add("show");
+    document.getElementById("btn-cancel-onboarding").onclick = () => modal.classList.remove("show");
+    document.getElementById("btn-save-onboarding").onclick = () => {
+      const val = (id) => document.querySelector(`#${id} .chip.selected`)?.dataset.value;
       state.profile = { estado: val("chips-estado"), tempo: val("chips-tempo"), foco: val("chips-foco") };
-      saveState(); renderAll(); modalOnb.classList.remove("show");
-    });
+      save(); renderAll(); modal.classList.remove("show");
+    };
 
-    // Init
-    loadState();
-    renderAll();
-    if(!state.profile.foco) setTimeout(() => modalOnb.classList.add("show"), 500);
+    function closeShareModal() { document.getElementById("share-backdrop").classList.remove("show"); }
+    function shareProgress() {
+      const text = `🔥 Faith Journey: ${state.streak} day streak with God!`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
+    }
 
+    init();
   </script>
 </body>
 </html>
